@@ -91,13 +91,13 @@ class Main extends PluginBase {
 			}
 			switch($result){
 				case 0:
-				$player->setFly(true);
+				$player->setAllowFlight(true);
 				$player->sendMessage("You Turn on Fly Mode");
 
 				break;
 
 				case 1:
-				$player->setFly(false);
+				$player->setAllowFlight(false);
 				$player->sendMessage("You Turn off Fly Mode");
 
 				break;
@@ -211,7 +211,7 @@ class Main extends PluginBase {
 				break;
 
 				case 6:
-				$level->OpenMyForm($player);
+				$this->OpenMyForm($player);
 
 				break;
 			}
