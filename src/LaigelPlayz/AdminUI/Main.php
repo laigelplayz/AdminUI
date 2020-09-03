@@ -27,9 +27,7 @@ class Main extends PluginBase {
 		switch($cmd->getName()){
 			case "adminui":
 			if($sender instanceof Player){
-				if($sender hasPermission("admin.ui.cmd")){
-					$this->OpenMyForm($player);
-				}
+				$this->OpenMyForm($player);
 			} else {
 				$sender->sendMessage("Please Execute this Command Ingame");
 			}
@@ -66,6 +64,11 @@ class Main extends PluginBase {
 				$this->OpenGamemodeForm($player);
 
 				break;
+
+				case 4:
+				$this->OpenTimeForm($player);
+
+				break;
 			}
 		});
 		$form->setTitle("Admin UI");
@@ -74,6 +77,7 @@ class Main extends PluginBase {
 		$form->addButton("Heal");
 		$form->addButton("Feed");
 		$form->addButton("Select Gamemode");
+		$form->addButton("Change Time");
 		$form->sendToPlayer($player);
 		return $form;
 	}
@@ -87,13 +91,13 @@ class Main extends PluginBase {
 			}
 			switch($result){
 				case 0:
-				$player->setFlying(true);
+				$player->setFly(true);
 				$player->sendMessage("You Turn on Fly Mode");
 
 				break;
 
 				case 1:
-				$player->setFlying(false);
+				$player->setFly(false);
 				$player->sendMessage("You Turn off Fly Mode");
 
 				break;
@@ -157,6 +161,70 @@ class Main extends PluginBase {
 		$form->addButton("Creative");
 		$form->addButton("Adventure");
 		$form->addButton("Spectator");
+		$form->addButton("BACK");
+		$form->sendToPlayer($player);
+		return $form;
+	}
+
+	public function OpenTimeForm($player){
+		$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+		$form = $api->createSimpleForm(function (Player $player, int $data = null){
+			$result = $data;
+			if($result === null){
+				return true;
+			}
+			switch($result){
+				case 0:
+				$this->setTime(23000);
+				$player->sendMessage("Time set to Sunrise");
+				
+				break;
+
+				case 1:
+				$this->setTime(1000);
+				$player->sendMessage("Time set to Day");
+
+				break;
+
+				case 2:
+				$this->setTime(6000);
+				$player->sendMessage("Time set to Noon");
+
+
+				break;
+
+				case 3:
+				$this->setTime(12000);
+				$player->sendMessage("Time set to Sunset");
+
+				break;
+
+				case 4:
+				$this->setTime(13000);
+				$player->sendMessage("Time set to Night");
+
+				break;
+
+				case 5:
+				$this->setTime(18000);
+				$player->sendMessage("Time set to MidNight");
+
+				break;
+
+				case 6:
+				$this->OpenMyForm($player);
+
+				break;
+			}
+		});
+		$form->setTitle("Gamemode");
+		$form->setContent("Choose Gamemode!");
+		$form->addButton("SunRise");
+		$form->addButton("Day");
+		$form->addButton("Noon");
+		$form->addButton("Sunset");
+		$form->addButton("Night");
+		$form->addButton("MidNight");
 		$form->addButton("BACK");
 		$form->sendToPlayer($player);
 		return $form;
