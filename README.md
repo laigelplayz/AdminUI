@@ -8,3 +8,7 @@ use Plugin with Cautions!`
 [**FormAPI**](https://poggit.pmmp.io/ci/jojoe77777/FormAPI/FormAPI).
 # Links
 If you want to help for developing the plugin. Please Click [here](https://discord.gg/99Tm4re).
+# Command:
+**adminui**
+# Permission:
+**admin.ui.cmd** Default: OP
