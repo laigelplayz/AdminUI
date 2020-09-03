@@ -4,5 +4,5 @@ branches:
 - master
 projects:
   AdminUI:
-    path: "LaigelPlayz/AdminUI"
+    path: "https://github.com/laigelplayz/AdminUI"
 ...
