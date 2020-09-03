@@ -16,7 +16,7 @@ use pocketmine\event\Listener;
 
 use jojoe77777\FormAPI\FormAPI;
 
-class Main extends PluginBase {
+class Main extends PluginBase implements Listener {
 
 	public function onEnable(){
 
@@ -73,11 +73,11 @@ class Main extends PluginBase {
 		});
 		$form->setTitle("Admin UI");
 		$form->setContent("Please Select an Action");
-		$form->addButton("Fly");
-		$form->addButton("Heal");
-		$form->addButton("Feed");
-		$form->addButton("Select Gamemode");
-		$form->addButton("Change Time");
+		$form->addButton("§3Fly");
+		$form->addButton("§cHeal");
+		$form->addButton("§aFeed");
+		$form->addButton("§6Gamemode");
+		$form->addButton("§eTime");
 		$form->sendToPlayer($player);
 		return $form;
 	}
@@ -110,8 +110,8 @@ class Main extends PluginBase {
 		});
 		$form->setTitle("FLY");
 		$form->setContent("Turn Fly Off and On");
-		$form->addButton("Fly On");
-		$form->addButton("Fly Off");
+		$form->addButton("§aFly On");
+		$form->addButton("§cFly Off");
 		$form->addButton("BACK");
 		$form->sendToPlayer($player);
 		return $form;
@@ -157,10 +157,10 @@ class Main extends PluginBase {
 		});
 		$form->setTitle("Gamemode");
 		$form->setContent("Choose Gamemode!");
-		$form->addButton("Survival");
-		$form->addButton("Creative");
-		$form->addButton("Adventure");
-		$form->addButton("Spectator");
+		$form->addButton("§cSurvival");
+		$form->addButton("§aCreative");
+		$form->addButton("§6Adventure");
+		$form->addButton("§eSpectator");
 		$form->addButton("BACK");
 		$form->sendToPlayer($player);
 		return $form;
@@ -216,14 +216,14 @@ class Main extends PluginBase {
 				break;
 			}
 		});
-		$form->setTitle("Gamemode");
-		$form->setContent("Choose Gamemode!");
-		$form->addButton("SunRise");
-		$form->addButton("Day");
-		$form->addButton("Noon");
-		$form->addButton("Sunset");
-		$form->addButton("Night");
-		$form->addButton("MidNight");
+		$form->setTitle("Admin Ui TIME");
+		$form->setContent("Change the time of the level you are in!");
+		$form->addButton("§6Sunrise");
+		$form->addButton("§eDay");
+		$form->addButton("§7Noon");
+		$form->addButton("§6Sunset");
+		$form->addButton("§cNight");
+		$form->addButton("§aMidnight");
 		$form->addButton("BACK");
 		$form->sendToPlayer($player);
 		return $form;
