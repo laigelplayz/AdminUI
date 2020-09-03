@@ -27,7 +27,7 @@ class Main extends PluginBase {
 		switch($cmd->getName()){
 			case "adminui":
 			if($sender instanceof Player){
-				$this->OpenMyForm($player);
+				$this->OpenMyForm($sender);
 			} else {
 				$sender->sendMessage("Please Execute this Command Ingame");
 			}
@@ -175,44 +175,43 @@ class Main extends PluginBase {
 			}
 			switch($result){
 				case 0:
-				$this->setTime(23000);
+				$player->getLevel()->setTime(23000);
 				$player->sendMessage("Time set to Sunrise");
 				
 				break;
 
 				case 1:
-				$this->setTime(1000);
+				$player->getLevel()->setTime(1000);
 				$player->sendMessage("Time set to Day");
 
 				break;
 
 				case 2:
-				$this->setTime(6000);
+				$player->getLevel()->setTime(6000);
 				$player->sendMessage("Time set to Noon");
-
 
 				break;
 
 				case 3:
-				$this->setTime(12000);
+				$player->getLevel()->setTime(12000);
 				$player->sendMessage("Time set to Sunset");
 
 				break;
 
 				case 4:
-				$this->setTime(13000);
+				$player->getLevel()->setTime(13000);
 				$player->sendMessage("Time set to Night");
 
 				break;
 
 				case 5:
-				$this->setTime(18000);
+				$player->getLevel()->setTime(18000);
 				$player->sendMessage("Time set to MidNight");
 
 				break;
 
 				case 6:
-				$this->OpenMyForm($player);
+				$level->OpenMyForm($player);
 
 				break;
 			}
