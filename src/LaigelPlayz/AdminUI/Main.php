@@ -18,6 +18,8 @@ use jojoe77777\FormAPI\FormAPI;
 
 class Main extends PluginBase implements Listener {
 
+	public $playerlist = [];
+
 	public function onEnable(){
 
 	}
@@ -69,6 +71,9 @@ class Main extends PluginBase implements Listener {
 				$this->OpenTimeForm($player);
 
 				break;
+
+				case 5:
+				$this->OpenKillForm($player);
 			}
 		});
 		$form->setTitle("Admin UI");
@@ -78,6 +83,7 @@ class Main extends PluginBase implements Listener {
 		$form->addButton("§aFeed");
 		$form->addButton("§6Gamemode");
 		$form->addButton("§eTime");
+		$form->addButton("§cKill");
 		$form->sendToPlayer($player);
 		return $form;
 	}
@@ -225,6 +231,31 @@ class Main extends PluginBase implements Listener {
 		$form->addButton("§cNight");
 		$form->addButton("§aMidnight");
 		$form->addButton("BACK");
+		$form->sendToPlayer($player);
+		return $form;
+	}
+
+	public function OpenKillForm($player){
+		$list = [];
+		foreach($this->getServer()->getOnlinePlayers() as $p){
+			$list[] = $p->getName();
+		}
+
+		$this->playerList[$player->getName()] = $list;
+		$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+		$form = $api->createCustomForm(function (Player $player, ?array $data = null) use ($list){
+			if(!isset($data)){
+				return true;
+			}
+
+			$name = $data[1];
+			$name = $list[$name];
+			$player = Server::getInstance()->getPlayer($name);
+			$player->kill();
+		});
+		$form->setTitle("Kill");
+		$form->addLabel("§cKill Selection");
+		$form->addDropDown("$aselect a player to kill", $this->playerList[$player->getName()]);
 		$form->sendToPlayer($player);
 		return $form;
 	}
